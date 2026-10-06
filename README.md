@@ -20,12 +20,16 @@ npm run preview
 
 ## 部署
 
+站点地址：[安静导航](https://anjing-nav.pages.dev/)。
+
 Cloudflare Pages 连接 GitHub 仓库 `anjing-le/anjing-nav`：
 
 - 生产分支：`main`
 - 构建命令：`npm run build`
 - 输出目录：`dist`
 - Node.js：`22.22.0`
+
+`main` 推送后自动构建部署。Node 版本由根目录 `.node-version` 指定，依赖版本由 `package-lock.json` 固定，下载使用项目 `.npmrc` 中的 npm 官方源。
 
 ## Git 身份
 
