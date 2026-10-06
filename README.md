@@ -29,7 +29,9 @@ Cloudflare Pages 连接 GitHub 仓库 `anjing-le/anjing-nav`：
 - 输出目录：`dist`
 - Node.js：`22.22.0`
 
-`main` 推送后自动构建部署。Node 版本由根目录 `.node-version` 指定，依赖版本由 `package-lock.json` 固定，下载使用项目 `.npmrc` 中的 npm 官方源。
+Git 集成已配置为 `main` 自动部署，但当前 Cloudflare 显示 Git 连接断开，GitHub 要求重新验证访问；自动部署尚未验证通过。当前网站已上线，可使用已有 Cloudflare 授权通过 Wrangler 发布。
+
+Node 版本由根目录 `.node-version` 指定，依赖版本由 `package-lock.json` 固定，下载使用项目 `.npmrc` 中的 npm 官方源。
 
 ## Git 身份
 
