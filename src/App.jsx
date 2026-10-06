@@ -8,7 +8,7 @@ const allSites = categories.flatMap((category) =>
 const siteById = new Map(allSites.map((site) => [site.id, site]))
 
 export default function App() {
-  const [expandedCategory, setExpandedCategory] = useState(categories[1].id)
+  const [expandedCategory, setExpandedCategory] = useState(null)
   const [selectedIds, setSelectedIds] = useState(() => new Set())
   const selectionRef = useRef(new Set())
   const clickGestureRef = useRef(null)
@@ -127,7 +127,7 @@ export default function App() {
           </ul>
         </section>
 
-        <section className="category-grid" aria-label="网站分类">
+        <section className="category-grid" aria-label="网站分类" data-expanded={expandedCategory !== null}>
           {categories.map((category, index) => {
             const isOpen = expandedCategory === category.id
             const contentId = `category-${category.id}-content`
@@ -148,7 +148,7 @@ export default function App() {
                     if (button) categoryButtonsRef.current.set(category.id, button)
                     else categoryButtonsRef.current.delete(category.id)
                   }}
-                  onClick={() => setExpandedCategory(category.id)}
+                  onClick={() => setExpandedCategory((current) => current === category.id ? null : category.id)}
                   onKeyDown={(event) => handleCategoryKeyDown(event, index)}
                 >
                   <img
