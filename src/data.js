@@ -1,4 +1,11 @@
 // All entries are mock content. The reserved .example domains never navigate.
+const extraMockNames = {
+  personal: ['四次元口袋', '我的作品', '学习地图', 'GitHub 旅途', '阅读记录', '习惯清单', '小镇街道', '金融笔记', '素材仓库', '周末计划', '灵感便签', '工具收藏'],
+  tools: ['代码格式化', '图片压缩', '时间转换', '正则练习', '画板', 'JSON 整理', '配色收藏', '图标小铺', '差异对比', 'Markdown 预览', '临时白板', '格式转换'],
+  work: ['代码仓库', '工作文档', '日志平台', '部署记录', '接口目录', '会议室', '测试面板', '问题清单', '排期日历', '资源目录', '数据查询', '知识库'],
+  wander: ['随便看看', '设计灵感', '一张照片', '声音角落', '有趣的文章', '独立小站', '夜晚书架', '陌生城市', '电影碎片', '游戏杂记', '好奇心', '今天发现'],
+}
+
 export const categories = [
   {
     id: 'personal',
@@ -52,4 +59,14 @@ export const categories = [
       { id: 'daydream-map', mark: '逛', name: '发呆地图', domain: 'daydream.example', description: '随便看看世界的某个角落，不急着去哪里。' },
     ],
   },
-]
+].map((category) => ({
+  ...category,
+  sites: [
+    ...category.sites,
+    ...extraMockNames[category.id].map((name, index) => ({
+      id: `${category.id}-extra-${index + 1}`,
+      name,
+      domain: `${category.id}-${index + 5}.example`,
+    })),
+  ],
+}))

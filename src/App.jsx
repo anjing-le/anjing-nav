@@ -8,13 +8,12 @@ const allSites = categories.flatMap((category) =>
 const siteById = new Map(allSites.map((site) => [site.id, site]))
 
 export default function App() {
-  const [expandedCategory, setExpandedCategory] = useState(null)
-  const [pinnedCategory, setPinnedCategory] = useState(null)
+  const [expandedCategory, setExpandedCategory] = useState(categories[1].id)
   const [selectedIds, setSelectedIds] = useState(() => new Set())
-  const expandedRef = useRef(null)
   const selectionRef = useRef(new Set())
   const clickGestureRef = useRef(null)
   const selectionListRef = useRef(null)
+  const categoryButtonsRef = useRef(new Map())
   const previousSelectionSizeRef = useRef(0)
   const selectedSites = [...selectedIds].map((id) => siteById.get(id)).filter(Boolean)
 
@@ -29,23 +28,6 @@ export default function App() {
   function updateSelection(nextSelection) {
     selectionRef.current = nextSelection
     setSelectedIds(nextSelection)
-  }
-
-  function openCategory(id, pin = false) {
-    expandedRef.current = id
-    setExpandedCategory(id)
-    setPinnedCategory(pin ? id : null)
-  }
-
-  function closeCategory() {
-    expandedRef.current = null
-    setExpandedCategory(null)
-    setPinnedCategory(null)
-  }
-
-  function toggleCategory(id) {
-    if (expandedCategory === id && pinnedCategory === id) closeCategory()
-    else openCategory(id, true)
   }
 
   function openSelection(ids) {
@@ -72,24 +54,17 @@ export default function App() {
       if (!event.repeat) openSelection(selectionRef.current)
     }
 
-    function handleOutsidePointer(event) {
-      if (event.target instanceof Element && !event.target.closest('.category-card')) closeCategory()
-    }
-
     document.addEventListener('keydown', handleKeyDown)
-    document.addEventListener('pointerdown', handleOutsidePointer)
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
-      document.removeEventListener('pointerdown', handleOutsidePointer)
     }
   }, [])
 
-  function handleSiteClick(event, site, categoryId) {
+  function handleSiteClick(event, site) {
     if (event.detail > 1) return
     const before = selectionRef.current
     clickGestureRef.current = { siteId: site.id, before: new Set(before) }
     updateSelection(toggleSiteSelection(before, site.id))
-    setPinnedCategory(categoryId)
   }
 
   function handleSiteDoubleClick(event, site) {
@@ -107,6 +82,17 @@ export default function App() {
     next.delete(id)
     updateSelection(next)
     clickGestureRef.current = null
+  }
+
+  function handleCategoryKeyDown(event, index) {
+    let nextIndex
+    if (event.key === 'ArrowRight') nextIndex = (index + 1) % categories.length
+    else if (event.key === 'ArrowLeft') nextIndex = (index + categories.length - 1) % categories.length
+    else if (event.key === 'Home') nextIndex = 0
+    else if (event.key === 'End') nextIndex = categories.length - 1
+    else return
+    event.preventDefault()
+    categoryButtonsRef.current.get(categories[nextIndex].id)?.focus()
   }
 
   return (
@@ -142,7 +128,7 @@ export default function App() {
         </section>
 
         <section className="category-grid" aria-label="网站分类">
-          {categories.map((category) => {
+          {categories.map((category, index) => {
             const isOpen = expandedCategory === category.id
             const contentId = `category-${category.id}-content`
 
@@ -151,19 +137,6 @@ export default function App() {
                 className={`category-card ${category.id}`}
                 key={category.id}
                 data-open={isOpen}
-                onPointerEnter={(event) => {
-                  if (event.pointerType === 'mouse' && expandedRef.current !== category.id) {
-                    openCategory(category.id)
-                  }
-                }}
-                onPointerLeave={(event) => {
-                  if (
-                    event.pointerType === 'mouse'
-                    && expandedRef.current === category.id
-                    && pinnedCategory !== category.id
-                    && !event.currentTarget.contains(document.activeElement)
-                  ) closeCategory()
-                }}
               >
                 <button
                   className="category-trigger"
@@ -171,7 +144,12 @@ export default function App() {
                   aria-label={category.title}
                   aria-expanded={isOpen}
                   aria-controls={contentId}
-                  onClick={() => toggleCategory(category.id)}
+                  ref={(button) => {
+                    if (button) categoryButtonsRef.current.set(category.id, button)
+                    else categoryButtonsRef.current.delete(category.id)
+                  }}
+                  onClick={() => setExpandedCategory(category.id)}
+                  onKeyDown={(event) => handleCategoryKeyDown(event, index)}
                 >
                   <img
                     className="category-illustration"
@@ -191,7 +169,7 @@ export default function App() {
                           className="site-item"
                           type="button"
                           aria-pressed={selectedIds.has(site.id)}
-                          onClick={(event) => handleSiteClick(event, site, category.id)}
+                          onClick={(event) => handleSiteClick(event, site)}
                           onDoubleClick={(event) => handleSiteDoubleClick(event, site)}
                         >
                           <span className="site-name">{site.name}</span>
