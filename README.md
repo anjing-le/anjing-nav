@@ -20,7 +20,9 @@ npm run preview
 
 ## 部署
 
-站点地址：[安静导航](https://anjing-nav.pages.dev/)。
+站点地址：[安静导航](https://nav.anjing.cc/)。
+
+自定义域名在 Cloudflare Pages 中绑定，DNS 记录为 `CNAME nav → anjing-nav.pages.dev`。
 
 Cloudflare Pages 连接 GitHub 仓库 `anjing-le/anjing-nav`：
 
