@@ -54,9 +54,19 @@ export default function App() {
       if (!event.repeat) openSelection(selectionRef.current)
     }
 
+    function handleBlankClick(event) {
+      if (!(event.target instanceof Element)) return
+      if (event.target.closest('button, a, input, textarea, select, summary, [role="button"], [role="link"], [contenteditable="true"], .selection-chip')) return
+      updateSelection(new Set())
+      clickGestureRef.current = null
+      setExpandedCategory(null)
+    }
+
     document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('click', handleBlankClick)
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener('click', handleBlankClick)
     }
   }, [])
 

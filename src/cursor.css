@@ -1,0 +1,24 @@
+/* Reuse anjing-anjing's Richfree assets, display size, and hotspots. */
+html,
+html * {
+  cursor: url("/assets/cursors/richfree-cursor.png") 0 0, auto !important;
+  cursor: -webkit-image-set(url("/assets/cursors/richfree-cursor.png") 2x) 0 0, auto !important;
+  cursor: image-set(url("/assets/cursors/richfree-cursor.png") 2x) 0 0, auto !important;
+}
+
+html :is(button:not(:disabled), a, [role="button"]:not([aria-disabled="true"]), [role="link"]),
+html :is(button:not(:disabled), a, [role="button"]:not([aria-disabled="true"]), [role="link"]) * {
+  cursor: url("/assets/cursors/richfree-pointer.png") 13 5, pointer !important;
+  cursor: -webkit-image-set(url("/assets/cursors/richfree-pointer.png") 2x) 7 3, pointer !important;
+  cursor: image-set(url("/assets/cursors/richfree-pointer.png") 2x) 7 3, pointer !important;
+}
+
+html :is(input, textarea, [contenteditable="true"]),
+html [contenteditable="true"] * {
+  cursor: text !important;
+}
+
+html :is(button:disabled, [aria-disabled="true"]),
+html :is(button:disabled, [aria-disabled="true"]) * {
+  cursor: not-allowed !important;
+}
