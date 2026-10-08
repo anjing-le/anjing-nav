@@ -14,7 +14,6 @@ export default function App() {
   const clickGestureRef = useRef(null)
   const selectionListRef = useRef(null)
   const categoryButtonsRef = useRef(new Map())
-  const categoryHoverRef = useRef(null)
   const previousSelectionSizeRef = useRef(0)
   const selectedSites = [...selectedIds].map((id) => siteById.get(id)).filter(Boolean)
 
@@ -60,7 +59,6 @@ export default function App() {
       if (event.target.closest('button, a, input, textarea, select, summary, [role="button"], [role="link"], [contenteditable="true"], .selection-chip')) return
       updateSelection(new Set())
       clickGestureRef.current = null
-      categoryHoverRef.current = null
       setExpandedCategory(null)
     }
 
@@ -109,16 +107,6 @@ export default function App() {
 
   function handleCategoryHover(event, categoryId) {
     if (event.pointerType !== 'mouse' || !window.matchMedia('(any-hover: hover)').matches) return
-    // Use pointer movement, not entry caused by cards resizing under the mouse.
-    const previous = categoryHoverRef.current
-    if (previous && previous.id !== categoryId) {
-      const { left, right, top, bottom } = previous.rect
-      // Keep the original hover area until the mouse leaves it after a resize.
-      if (event.clientX >= left && event.clientX <= right && event.clientY >= top && event.clientY <= bottom) return
-    }
-    if (previous?.id !== categoryId) {
-      categoryHoverRef.current = { id: categoryId, rect: event.currentTarget.getBoundingClientRect() }
-    }
     setExpandedCategory((current) => current === categoryId ? current : categoryId)
   }
 
@@ -128,7 +116,6 @@ export default function App() {
       setExpandedCategory(categoryId)
       return
     }
-    categoryHoverRef.current = null
     setExpandedCategory((current) => current === categoryId ? null : categoryId)
   }
 
@@ -168,18 +155,12 @@ export default function App() {
           {categories.map((category, index) => {
             const isOpen = expandedCategory === category.id
             const contentId = `category-${category.id}-content`
-            const siteColumns = Math.max(1, Math.min(3, Math.ceil(Math.sqrt(category.sites.length))))
-            const nameLength = Math.max(10, ...category.sites.map((site) => [...site.name].reduce(
-              (length, character) => length + (character.charCodeAt(0) > 255 ? 2 : 1), 0,
-            )))
 
             return (
               <article
                 className={`category-card ${category.id}`}
                 key={category.id}
                 data-open={isOpen}
-                style={{ '--site-columns': siteColumns, '--name-length': nameLength }}
-                onPointerMove={(event) => handleCategoryHover(event, category.id)}
               >
                 <button
                   className="category-trigger"
@@ -191,6 +172,7 @@ export default function App() {
                     if (button) categoryButtonsRef.current.set(category.id, button)
                     else categoryButtonsRef.current.delete(category.id)
                   }}
+                  onPointerMove={(event) => handleCategoryHover(event, category.id)}
                   onClick={(event) => handleCategoryClick(event, category.id)}
                   onKeyDown={(event) => handleCategoryKeyDown(event, index)}
                 >
