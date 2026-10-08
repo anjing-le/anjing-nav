@@ -105,6 +105,21 @@ export default function App() {
     categoryButtonsRef.current.get(categories[nextIndex].id)?.focus()
   }
 
+  function handleCategoryHover(event, categoryId) {
+    if (event.pointerType !== 'mouse' || !window.matchMedia('(any-hover: hover)').matches) return
+    // Use pointer movement, not entry caused by cards resizing under the mouse.
+    setExpandedCategory((current) => current === categoryId ? current : categoryId)
+  }
+
+  function handleCategoryClick(event, categoryId) {
+    // Hover already opens mouse targets; the following click should keep them open.
+    if (event.nativeEvent.pointerType === 'mouse' && window.matchMedia('(any-hover: hover)').matches) {
+      setExpandedCategory(categoryId)
+      return
+    }
+    setExpandedCategory((current) => current === categoryId ? null : categoryId)
+  }
+
   return (
     <main className="page" aria-label="安静导航">
       <div className="navigation">
@@ -147,6 +162,7 @@ export default function App() {
                 className={`category-card ${category.id}`}
                 key={category.id}
                 data-open={isOpen}
+                onPointerMove={(event) => handleCategoryHover(event, category.id)}
               >
                 <button
                   className="category-trigger"
@@ -158,7 +174,7 @@ export default function App() {
                     if (button) categoryButtonsRef.current.set(category.id, button)
                     else categoryButtonsRef.current.delete(category.id)
                   }}
-                  onClick={() => setExpandedCategory((current) => current === category.id ? null : category.id)}
+                  onClick={(event) => handleCategoryClick(event, category.id)}
                   onKeyDown={(event) => handleCategoryKeyDown(event, index)}
                 >
                   <img
