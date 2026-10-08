@@ -136,10 +136,10 @@ export default function App() {
                   className="selection-preview"
                   type="button"
                   aria-label={`${site.name}，双击或回车打开已选网站`}
+                  title={site.url || `https://${site.domain}`}
                   onDoubleClick={() => openSelection(selectionRef.current)}
                 >
                   <span className="selection-name">{site.name}</span>
-                  <span className="selection-domain">{site.domain}</span>
                 </button>
                 <button
                   className="selection-remove"
@@ -195,11 +195,11 @@ export default function App() {
                           className="site-item"
                           type="button"
                           aria-pressed={selectedIds.has(site.id)}
+                          title={site.url || `https://${site.domain}`}
                           onClick={(event) => handleSiteClick(event, site)}
                           onDoubleClick={(event) => handleSiteDoubleClick(event, site)}
                         >
                           <span className="site-name">{site.name}</span>
-                          <span className="site-domain">{site.domain}</span>
                         </button>
                       </li>
                     ))}

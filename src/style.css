@@ -27,9 +27,8 @@ button:focus-visible { outline: 3px solid #345b9b; outline-offset: 4px; }
 .selection-chip.tools { --card-color: #c4e7f4; }
 .selection-chip.work { --card-color: #d2e6b3; }
 .selection-chip.wander { --card-color: #e3d8f4; }
-.selection-preview { display: flex; flex-direction: column; justify-content: center; gap: 7px; padding: 13px 12px 10px; border: 0; border-radius: inherit; width: 100%; min-width: 0; height: 100%; background: transparent; text-align: left; cursor: pointer; }
+.selection-preview { display: flex; flex-direction: column; justify-content: center; padding: 13px 12px 10px; border: 0; border-radius: inherit; width: 100%; min-width: 0; height: 100%; background: transparent; text-align: left; cursor: pointer; }
 .selection-name { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: 16px; font-size: 13px; font-weight: 600; }
-.selection-domain { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace; font-size: 10px; color: #72695d; }
 .selection-remove { position: absolute; top: 0; right: 0; width: 25px; height: 25px; padding: 0; border: 0; background: transparent; font-size: 17px; color: #6a6256; cursor: pointer; }
 .selection-remove:hover { color: #302b27; }
 
@@ -49,12 +48,11 @@ button:focus-visible { outline: 3px solid #345b9b; outline-offset: 4px; }
 .category-card[data-open='true'] .category-illustration { width: 44px; height: 44px; }
 .category-content { padding: 0 18px 18px; min-width: 0; }
 .site-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 0; margin: 0; list-style: none; }
-.site-item { width: 100%; min-width: 0; min-height: 58px; display: flex; flex-direction: column; justify-content: center; gap: 5px; padding: 9px 10px; text-align: left; background: #fffaf0d9; border: 1px solid #65584445; border-radius: 9px 6px 8px 5px; cursor: pointer; }
+.site-item { width: 100%; min-width: 0; min-height: 58px; display: flex; flex-direction: column; justify-content: center; padding: 9px 10px; text-align: left; background: #fffaf0d9; border: 1px solid #65584445; border-radius: 9px 6px 8px 5px; cursor: pointer; }
 .site-item:hover { background: #fff8; border-color: #6558446b; }
 .site-item[aria-pressed='true'] { background: #fffaf0d9; border-color: #4c4437; box-shadow: 1px 2px 0 #3b342f33; }
 .site-item:focus-visible { outline-offset: 1px; }
 .site-name { font-size: 14px; line-height: 1.3; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.site-domain { display: block; max-width: 100%; font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace; font-size: 11px; line-height: 1.1; color: #736e62; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 @keyframes pop-in { from { opacity: 0; transform: translateY(-5px) scale(.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
 @media (min-width: 801px) {
