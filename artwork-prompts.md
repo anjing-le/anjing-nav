@@ -26,46 +26,53 @@ Edit this drawing into a PURE OBJECT category illustration, with ZERO people or 
 
 Edit this drawing into a PURE OBJECT category illustration, with ZERO people or characters. Completely remove the boy, yellow hair, face, head, body, hoodie, arms, hands and feet. Do not show any person, face, body part, animal, mascot or anthropomorphic object. Preserve only the drawing style: crude childlike wax-crayon doodle, thick very rough black marker outlines, visible white paper grain inside scribbly uneven wax-crayon colored shapes. Warm handmade feeling, naive charming objects, not polished vector art, not anime, not 3D. Transparent background. No text, letters, labels, logos, frame or card. Recompose and enlarge the objects into a balanced single square composition occupying roughly 80 percent of the canvas with small even margins. Draw a tiny blue-and-grass-green globe on a black stand, next to an open pastel lavender book, two small stacked lavender books and simple black-and-lavender headphones resting on the books. One tiny yellow sparkle. A simple cheerful icon for miscellaneous websites and browsing.
 
+## 名画完整构图背景（v2）
 
+使用 Codex 内置 imagegen 进行 style-transfer 重绘，未使用 CLI 或 Google Imagen。每幅以对应名画原作作为构图参考，保留主体和整体场景，改为蜡笔、彩铅草图；不再刻意清空中央。输出为 16:9，横向扩展边缘，避免裁切主要物件。cwebp q80/m6 压缩为版本化 WebP，旧版文件保留但不再使用。
 
-## 名画灵感背景
+页面以 contain 显示完整画面，底部居中，暖纸白衬底，背景层不透明度 0.22，以降低对入口和网站列表的干扰。刷新时随机选一张并避免连续重复，一次只请求选中图片。
 
-使用 Codex 内置 imagegen 生成（未使用 CLI 或 Google Imagen），无参考图，生成四张独立宽幅图片后以 cwebp q80 转为 WebP。每次页面加载随机选一张，使用过程中固定；localStorage 记录上次背景以避免连续重复，存储不可用时仍可随机加载。一次只请求选中图片，不预加载其余三张。
+原作参考：
 
-共享提示词：
+- [梵高《星月夜》— MoMA](https://www.moma.org/collection/works/79802)
+- [莫奈《睡莲》— Art Institute of Chicago](https://www.artic.edu/artworks/16568/water-lilies)
+- [葛饰北斋《神奈川冲浪里》— The Met](https://www.metmuseum.org/art/collection/search/45434)
+- [塞尚《圣维克多山与阿尔克河谷高架桥》— The Met](https://www.metmuseum.org/art/collection/search/435877)
 
-```text
-Use case: stylized-concept. Asset type: full-screen background for a minimalist personal website, one landscape image, 16:9. Original loosely hand-drawn reinterpretation inspired by a famous landscape painting, NOT a painting photograph or a literal full reproduction. Medium: delicate naive wax-crayon and graphite sketch on CLEAN warm ivory paper (#faf7ef), airy and handmade. Extremely low contrast pastel marks, no black outlines, no dark dense shading, very faint minimal paper texture. The center 50 percent of the width and upper-middle 75 percent of the height must remain nearly EMPTY pale paper for navigation cards, not a white rectangular hole; smoothly taper artwork toward this empty area. Place sparse recognizable motifs mainly along the far left/right edges and bottom corners. All imagery barely tinted, softly erased pencil, white space dominates, no vignette, no muddy grain, no stains, no UI elements, no text, captions, signatures, borders, frames, people, faces, animals. Background must feel calm and clean rather than washed-out dirty. Landscape wide composition, pale near-white overall.
-```
+最终完整提示词：
 
 ### starry-sky
 
-输出：`public/backgrounds/starry-sky.webp`。
+输出：`public/backgrounds/starry-sky-v2.webp`。
 
 ```text
-Inspired by the composition of Vincent van Gogh's The Starry Night: a few soft pale blue spiral sky lines and tiny pale butter-yellow star disks along the top corners; a gently curved slate-blue hill line near the bottom edge, a very small simplified cypress silhouette on the far left in light sage gray. Never dark navy or black. No dense swirling middle.
+Use case: style-transfer. Asset type: full-page website background illustration. Input image 1 is the original masterpiece and the authoritative composition reference. Redraw the ENTIRE original painting in a naive handmade children's crayon and colored-pencil sketch style on clean warm ivory paper. Preserve the original composition, proportions, relative positions, foreground and distant scenery so the painting is immediately recognizable. This is a full scene, not edge decorations: keep imagery through the center. Use visibly rough wax-crayon hatching and soft imperfect graphite outlines, simple handmade shapes. Very pale pastel colors, low overall contrast, gentle diffuse paper grain; recognizable detail without dense dark shading or dirty texture. No added Anjing character. No UI, no typography, no signature, no watermark, no picture frame or photo borders. Output landscape 16:9: preserve the entire original composition without cropping main objects; gently extend only the far left/right periphery to fit the wider canvas. Avoid photorealism, oil-paint gloss, anime, 3D and polished vector shapes.
+Van Gogh The Starry Night: retain the tall left cypress, swirling sky across the middle, stars and moon, mountains and the village with church below. Pale powder blue, faint yellow, muted sage; soften the originally dark night into a light daytime-paper value range.
 ```
 
 ### water-lilies
 
-输出：`public/backgrounds/water-lilies.webp`。
+输出：`public/backgrounds/water-lilies-v2.webp`。
 
 ```text
-Inspired by Claude Monet's Water Lilies: a handful of light sage-green lily pads and tiny muted pink blossoms at the outer lower-left and lower-right; faint pale blue horizontal pond reflections near the edges. Center remains almost empty warm paper. No bridge, no full pond covering center, no saturated greenery.
+Use case: style-transfer. Asset type: full-page website background illustration. Input image 1 is the original masterpiece and the authoritative composition reference. Redraw the ENTIRE original painting in a naive handmade children's crayon and colored-pencil sketch style on clean warm ivory paper. Preserve the original composition, proportions, relative positions, foreground and distant scenery so the painting is immediately recognizable. This is a full scene, not edge decorations: keep imagery through the center. Use visibly rough wax-crayon hatching and soft imperfect graphite outlines, simple handmade shapes. Very pale pastel colors, low overall contrast, gentle diffuse paper grain; recognizable detail without dense dark shading or dirty texture. No added Anjing character. No UI, no typography, no signature, no watermark, no picture frame or photo borders. Output landscape 16:9: preserve the entire original composition without cropping main objects; gently extend only the far left/right periphery to fit the wider canvas. Avoid photorealism, oil-paint gloss, anime, 3D and polished vector shapes.
+Monet Water Lilies: preserve this specific painting’s pond, reflections and clusters of lily pads and flowers across the whole pond, including the middle. Pale lilac, powder blue, muted green and subtle peach. Do not invent a horizon or a willow-tree border.
 ```
 
 ### great-wave
 
-输出：`public/backgrounds/great-wave.webp`。
+输出：`public/backgrounds/great-wave-v2.webp`。
 
 ```text
-Inspired by Hokusai's The Great Wave off Kanagawa: one elegantly simplified pale powder-blue curving wave rising from the far lower-left edge, faint foam curls, a tiny distant pale gray-blue Mount Fuji near the far lower-right. Keep the big central field almost entirely empty paper. No boats, people, dark outlines, dramatic dense ocean.
+Use case: style-transfer. Asset type: full-page website background illustration. Input image 1 is the original masterpiece and the authoritative composition reference. Redraw the ENTIRE original painting in a naive handmade children's crayon and colored-pencil sketch style on clean warm ivory paper. Preserve the original composition, proportions, relative positions, foreground and distant scenery so the painting is immediately recognizable. This is a full scene, not edge decorations: keep imagery through the center. Use visibly rough wax-crayon hatching and soft imperfect graphite outlines, simple handmade shapes. Very pale pastel colors, low overall contrast, gentle diffuse paper grain; recognizable detail without dense dark shading or dirty texture. No added Anjing character. No UI, no typography, no signature, no watermark, no picture frame or photo borders. Output landscape 16:9: preserve the entire original composition without cropping main objects; gently extend only the far left/right periphery to fit the wider canvas. Avoid photorealism, oil-paint gloss, anime, 3D and polished vector shapes.
+Hokusai The Great Wave: keep the towering curling wave and foam claws on the left, the original small boats and tiny rower marks, the smaller foreground wave and distant Mount Fuji. Pale powder blue, cream and faint graphite; retain the dramatic iconic contours but render them lightly. Remove original inscription lettering.
 ```
 
 ### quiet-mountain
 
-输出：`public/backgrounds/quiet-mountain.webp`。
+输出：`public/backgrounds/quiet-mountain-v2.webp`。
 
 ```text
-Inspired by Paul Cezanne's Mont Sainte-Victoire landscape studies: an extremely faint lavender-gray triangular mountain contour toward the upper-right outer edge, a few light sage/ochre crayon strokes for fields along lower-left and lower-right. Airy unfinished pencil sketch, no central mountain or densely painted land, no houses or people.
+Use case: style-transfer. Asset type: full-page website background illustration. Input image 1 is the original masterpiece and the authoritative composition reference. Redraw the ENTIRE original painting in a naive handmade children's crayon and colored-pencil sketch style on clean warm ivory paper. Preserve the original composition, proportions, relative positions, foreground and distant scenery so the painting is immediately recognizable. This is a full scene, not edge decorations: keep imagery through the center. Use visibly rough wax-crayon hatching and soft imperfect graphite outlines, simple handmade shapes. Very pale pastel colors, low overall contrast, gentle diffuse paper grain; recognizable detail without dense dark shading or dirty texture. No added Anjing character. No UI, no typography, no signature, no watermark, no picture frame or photo borders. Output landscape 16:9: preserve the entire original composition without cropping main objects; gently extend only the far left/right periphery to fit the wider canvas. Avoid photorealism, oil-paint gloss, anime, 3D and polished vector shapes.
+Cezanne Mont Sainte-Victoire and the Viaduct of the Arc River Valley: preserve the left foreground trees, slender central pine, distant mountain, horizontal viaduct across middle-right and valley fields/houses. Pale sage, ochre, powder blue; remove the photographed black border and frame completely.
 ```

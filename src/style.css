@@ -21,10 +21,10 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background-image: var(--page-art);
-  background-size: cover;
+  background-size: contain;
   background-position: center bottom;
   background-repeat: no-repeat;
-  opacity: .8;
+  opacity: .22;
 }
 button { color: inherit; font: inherit; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 button:focus-visible { outline: 3px solid #345b9b; outline-offset: 4px; }
@@ -71,7 +71,6 @@ button:focus-visible { outline: 3px solid #345b9b; outline-offset: 4px; }
   .page { padding-inline: 32px; }
 }
 @media (max-width: 800px) {
-  body::before { background-position: left bottom; }
   .page { padding: 22px 22px 28px; }
   .category-grid { gap: 18px 12px; }
   .category-trigger { padding: 7px; height: 77px; border-width: 2px; border-radius: 10px 6px 9px 5px; }

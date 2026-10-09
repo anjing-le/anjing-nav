@@ -12,7 +12,7 @@ export function applyPageBackground() {
 
   const candidates = backgrounds.filter((name) => name !== previous)
   const chosen = candidates[Math.floor(Math.random() * candidates.length)]
-  document.documentElement.style.setProperty('--page-art', `url("/backgrounds/${chosen}.webp")`)
+  document.documentElement.style.setProperty('--page-art', `url("/backgrounds/${chosen}-v2.webp")`)
 
   try {
     window.localStorage.setItem(storageKey, chosen)
