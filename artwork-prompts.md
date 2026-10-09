@@ -85,3 +85,79 @@ Use case: style-transfer. Asset type: landscape 16:9 full-page website backgroun
 ```text
 Use case: precise-object-edit. Image 1 is the current crayon Mona Lisa website background. Change only the horizontal placement of Mona Lisa: move the entire unchanged woman LEFT by 9 percent of canvas width, so the face center is at x=18 percent, not x=27 percent. Keep the head, hair, shoulders, pose, hands, original facial likeness, height and scale exactly the same; do not crop head or hands. Let the outer lower-left sleeve meet the left edge naturally if needed. Smoothly redraw the surrounding landscape to fill the space left by the shifted figure, keeping the same rough wax-crayon / colored-pencil texture, distant hills and river. Keep landscape, colors, lighting, paper texture and 16:9 aspect ratio unchanged. The entire head and face must lie left of x=25 percent, so website cards beginning at x=28 percent do not cover it. No new objects, text, frames or other people.
 ```
+
+## 新增六幅名画背景
+
+当前随机池共十张，新增以下六张；原作人物属于画面内容，不添加安静 IP。使用 Codex 内置 imagegen，以本地原作参考进行 style-transfer。最终以 cwebp q80/m6 转为 WebP。继续每次只加载一张、加载后不轮换、不连续重复。
+
+共享提示词（每张生成时拼接其独立提示词）：
+
+```text
+Use case: style-transfer. Asset type: full-page 16:9 website background illustration. Image 1 is the original masterpiece and the authoritative reference for its subject and arrangement. Redraw the recognizable whole scene in naive handmade children's wax-crayon and colored-pencil sketch style on clean warm ivory paper (#faf7ef). Preserve the painting's iconic objects, silhouettes, poses and relative composition. Use imperfect crayon hatching and soft rough graphite outlines, simple handmade forms, visible but clean paper grain. Light pastel colors and restrained contrasts, no dense dark shading or muddy texture. Preserve original figures; no added Anjing mascot or invented people. No UI, no text, no signature, no watermark, no photo borders, no frame. Landscape 16:9: preserve all main elements and gently extend only the surrounding setting at the periphery to fill the wide canvas. Full-scene illustration through the center, not disconnected edge decorations or a central white hole. Avoid photorealism, oil-paint gloss, anime, 3D and polished vector art.
+```
+
+### pearl-earring
+
+输出：`public/backgrounds/pearl-earring-v2.webp`。
+
+原作：[戴珍珠耳环的少女](https://www.mauritshuis.nl/en/our-collection/artworks/670-girl-with-a-pearl-earring)。构图参考副本来自 [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:1665_Girl_with_a_Pearl_Earring.jpg)。
+
+```text
+Vermeer Girl with a Pearl Earring. Preserve her turned head, direct gaze, parted lips, iconic blue/yellow headscarf and large drop pearl earring. The complete bust occupies the far LEFT quarter; her entire head and face must lie to the left of x=25%, face center x=17% and y=35%, so navigation at x=28–72%, y=24–41% does not cover her eyes. Keep her original pose and distinctive likeness. Replace the original black backdrop with softly scribbled pale ivory/sage paper across the full scene, no invented landscape or new props. Powder blue scarf, pale yellow, peach, warm gray garment; rough pale gray outlines.
+```
+
+### the-scream
+
+输出：`public/backgrounds/the-scream-v2.webp`。
+
+原作：[呐喊](https://www.nasjonalmuseet.no/en/collection/object/NG.M.00939)。
+
+```text
+Munch The Scream, this specific National Museum version. Preserve the iconic long open-mouthed oval face and hands at cheeks, long wavy figure, diagonal bridge railings, two small distant walkers, winding blue fjord and undulating orange sky. Keep whole bridge scene. The main figure is positioned at x=18% with its head at y=64%, safely away from upper-middle navigation; carry the bridge perspective and fjord toward the right by gently extending the original landscape. Render the emotional expression in simple playful crayon outlines without graphic horror. Pale peach coral sky, powder blue water, faint gray outlines, no dark black coat.
+```
+
+### grande-jatte
+
+输出：`public/backgrounds/grande-jatte-v2.webp`。
+
+原作：[大碗岛的星期天下午](https://www.artic.edu/artworks/27992/a-sunday-on-la-grande-jatte-1884)。
+
+```text
+Seurat A Sunday on La Grande Jatte—1884. Preserve the complete riverside park composition: large parasol-holding couple at far right, left foreground reclining figures and small animals, lawn trees, row of promenading people, central woman with child and boats on the river to the left. Preserve these groups and spatial relationships, simplified as tiny naive crayon figures rather than realistic people. Replace pointillist oil paint with airy crayon speckles and colored pencil hatching. Pale sage green lawn, soft yellow sunlight, blue water and lavender shadows; no dark foreground masses. Extend only side edges slightly for 16:9, no large blank central area.
+```
+
+### sunflowers
+
+输出：`public/backgrounds/sunflowers-v2.webp`。
+
+原作：[向日葵](https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-sunflowers)。
+
+```text
+Van Gogh Sunflowers, the specific National Gallery London yellow-background version in Image 1. Preserve the recognizable irregular bouquet with open yellow flowers, round ochre seed heads, drooping petals and stems, simple two-tone yellow ceramic vase and horizontal tabletop. Keep the WHOLE still-life bouquet and vase, rather than isolated decorative flowers. Place the vase and complete flower bouquet in the LEFT quarter of the wide scene, center x=17%, all flowers and vase left of x=27%, top y=10%, vase bottom y=90%. Preserve the distinctive original arrangement, vase proportions and simple tabletop, extending the original pale yellow wall and table across the right. Butter-yellow, faint ochre, pale sage stems, muted warm graphite outlines. No signature lettering on vase, no additional props or extra flowers, no black seeds or dense texture.
+```
+
+### the-kiss
+
+输出：`public/backgrounds/the-kiss-v2.webp`。
+
+原作：[吻](https://sammlung.belvedere.at/objects/6678/der-kuss-liebespaar)。
+
+```text
+Gustav Klimt The Kiss. Preserve the embracing adult couple: man bowing to kiss the woman's cheek, woman kneeling with closed eyes, hands and bare feet, the flowing shared gold robes with distinctive rectangular motifs on his side and circles/flowers on hers, flower-studded meadow under them. Fit the COMPLETE couple, full robes and meadow into the LEFT quarter of the wide scene; both heads and faces stay left of x=25%, around y=20%; keep original pose and proportion. Extend the pale gold paper field and lower meadow gently across the right. Render gold as light butter-yellow crayon, sparse soft color ornaments, not metallic gold or dark mottled background. Preserve original figures only, no extra people.
+```
+
+### american-gothic
+
+输出：`public/backgrounds/american-gothic-v2.webp`。
+
+原作：[美国哥特式](https://www.artic.edu/artworks/6565/american-gothic)。
+
+```text
+Grant Wood American Gothic. Preserve the iconic solemn woman beside the older man wearing round glasses and holding the three-tined pitchfork, their distinctive clothing and frontal half-length arrangement, the white farmhouse with Gothic arched window and the red barn. Fit the whole original pair and farmhouse group into the LEFT third of the wide canvas; their heads centered near x=9% and x=22%, neither face right of x=26%, around y=35%, avoiding the upper-middle navigation. Preserve relative left/right arrangement and pitchfork silhouette, extending the same pale rural yard/sky to the right, no new houses or people. Pale sage trees, cream farmhouse, soft blue overalls, pale peach faces and warm gray coats; no dense black shading.
+```
+
+最终布局调整（以初版重绘为编辑目标）：
+
+```text
+Use case: precise-object-edit. Image 1 is the current crayon reinterpretation of American Gothic. Correct ONLY the layout for a website background. Scale the entire original pair, pitchfork, farmhouse and red barn together down to approximately 60% of their current size, preserving all internal proportions, and place this intact group in the FAR LEFT THIRD anchored near the bottom edge. Keep both complete heads and faces, original facial likeness, solemn expressions, half-length poses, clothing, pitchfork and farmhouse architecture unchanged. Woman face center near x=8%, man face center near x=22%; man's entire head must stay left of x=26%. Heads around y=48%–58%, below the navigation. Neither face may be cropped. Preserve all limbs and the three-tined pitchfork. Smoothly extend the existing pale rural field and sky across the rest of the wide scene, no empty rectangular hole. Keep the same crayon/colored-pencil style, palette, clean paper texture and 16:9 format. No new props, houses, people, typography or frame.
+```
