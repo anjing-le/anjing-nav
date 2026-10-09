@@ -13,6 +13,7 @@
 - 首页只保留入口卡片与已选预览，不添加页头、介绍、操作提示或页脚文字。mock 保护与浏览器限制保留在导航 helper 中，页面不增加冗余说明。
 - 光标复用 `anjing-anjing/public/assets/cursors/` 的 Richfree 普通/点击 PNG，保留 `2x` 尺寸与热点；源项目只读，导航站使用本地副本，不引入 Tauri 或主题设置。
 - 不自动添加登录、下钻页面、后端、UI 库或额外基础设施。
+- 背景使用内置 imagegen 生成的四张名画灵感淡蜡笔草图，位于 `public/backgrounds/`，共享提示词见 `artwork-prompts.md`。暖纸白底、四周淡彩、中间留白，无人物、文字或画框。每次加载随机选择一张，localStorage 避免连续重复；浏览器存储不可用时仍能加载。一次只请求选中背景，不轮播、不预加载全部图片，背景层不能遮挡点击或改变入口布局。
 - Git 作者与提交者都使用 `anjing-le <245548353+anjing-le@users.noreply.github.com>`，只设置仓库本地身份，提交前核验。
 - Git remote 使用 `git@github.com:anjing-le/anjing-nav.git`，当前工作树使用 `~/.ssh/id_rsa_anjing`，不依赖默认 GitHub SSH 身份。
 - 发布前执行 `npm run build` 与 `git diff --check`，区分本地构建成功与 Cloudflare 部署、线上页面验证。
