@@ -1,4 +1,4 @@
-const backgrounds = ['starry-sky', 'water-lilies', 'great-wave', 'quiet-mountain']
+const backgrounds = ['starry-sky', 'water-lilies', 'great-wave', 'mona-lisa']
 const storageKey = 'anjing-nav:last-background'
 
 // Choose once before React renders; selecting sites never changes the background.
