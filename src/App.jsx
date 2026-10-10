@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { categories } from './data.js'
+import ArtworkInfo from './ArtworkInfo.jsx'
 import { openSelectedSites, selectionForDoubleClick, toggleSiteSelection } from './navigation.js'
 
 const allSites = categories.flatMap((category) =>
@@ -7,7 +8,7 @@ const allSites = categories.flatMap((category) =>
 )
 const siteById = new Map(allSites.map((site) => [site.id, site]))
 
-export default function App() {
+export default function App({ artwork }) {
   const [expandedCategory, setExpandedCategory] = useState(null)
   const [selectedIds, setSelectedIds] = useState(() => new Set())
   const selectionRef = useRef(new Set())
@@ -48,7 +49,7 @@ export default function App() {
       }
       if (event.key !== 'Enter' || event.ctrlKey || event.metaKey || event.altKey) return
       const target = event.target
-      if (target instanceof Element && target.closest('input, textarea, select, [contenteditable="true"]')) return
+      if (target instanceof Element && target.closest('input, textarea, select, [contenteditable="true"], .artwork-info')) return
       if (!selectionRef.current.size) return
       event.preventDefault()
       if (!event.repeat) openSelection(selectionRef.current)
@@ -56,7 +57,7 @@ export default function App() {
 
     function handleBlankClick(event) {
       if (!(event.target instanceof Element)) return
-      if (event.target.closest('button, a, input, textarea, select, summary, [role="button"], [role="link"], [contenteditable="true"], .selection-chip')) return
+      if (event.target.closest('button, a, input, textarea, select, summary, [role="button"], [role="link"], [contenteditable="true"], .selection-chip, .artwork-info')) return
       updateSelection(new Set())
       clickGestureRef.current = null
       setExpandedCategory(null)
@@ -121,6 +122,7 @@ export default function App() {
 
   return (
     <main className="page" aria-label="安静导航">
+      <ArtworkInfo artwork={artwork} />
       <div className="navigation">
         <section
           className="selection-tray"

@@ -5,10 +5,10 @@ import { applyPageBackground } from './backgrounds.js'
 import './style.css'
 import './cursor.css'
 
-applyPageBackground()
+const artwork = applyPageBackground()
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <App artwork={artwork} />
   </StrictMode>,
 )

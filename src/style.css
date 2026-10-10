@@ -31,6 +31,17 @@ button:focus-visible { outline: 3px solid #345b9b; outline-offset: 4px; }
 [hidden] { display: none !important; }
 ::selection { background: #f4d56b; color: #302b27; }
 
+.artwork-info { position: fixed; top: 18px; right: 22px; z-index: 20; }
+.artwork-info-trigger { display: grid; place-items: center; width: 44px; height: 44px; padding: 8px; border: 1.5px solid #746b5b; border-radius: 9px 5px 8px 6px; background: #fffaf0df; color: #655a49; box-shadow: 1px 2px 0 #746b5b66; }
+.artwork-info-trigger:hover, .artwork-info-trigger[aria-expanded='true'] { background: #f8e6a7; color: #3b342f; }
+.artwork-info-trigger svg { width: 26px; height: 26px; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.artwork-info-popover { position: absolute; top: 100%; right: 0; width: min(300px, calc(100vw - 36px)); padding-top: 10px; }
+.artwork-info-paper { padding: 20px; background: #fffaf0; border: 2px solid #746b5b; border-radius: 11px 6px 9px 5px; box-shadow: 3px 4px 0 #746b5b66; max-height: calc(100svh - 90px); overflow-y: auto; }
+.artwork-info-paper h2 { margin: 0; font-size: 18px; line-height: 1.45; font-weight: 650; }
+.artwork-info-artist { margin: 5px 0 14px; color: #807563; font-size: 12px; }
+.artwork-info-description { margin: 0 0 15px; font-size: 13px; line-height: 1.85; }
+.artwork-info-paper a { color: #75674f; font-size: 12px; text-underline-offset: 4px; }
+
 .page { display: grid; align-content: start; max-width: 1400px; min-height: 100svh; margin: 0 auto; padding: clamp(24px, 8svh, 80px) 48px 30px; }
 .navigation { min-width: 0; }
 .selection-tray { position: sticky; top: 14px; z-index: 5; height: 94px; margin-bottom: 20px; min-width: 0; background: linear-gradient(#faf7eff5 85%, #faf7ef00); }
@@ -71,6 +82,7 @@ button:focus-visible { outline: 3px solid #345b9b; outline-offset: 4px; }
   .page { padding-inline: 32px; }
 }
 @media (max-width: 800px) {
+  .artwork-info { top: 12px; right: 14px; }
   .page { padding: 22px 22px 28px; }
   .category-grid { gap: 18px 12px; }
   .category-trigger { padding: 7px; height: 77px; border-width: 2px; border-radius: 10px 6px 9px 5px; }
