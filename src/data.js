@@ -10,6 +10,7 @@ export const categories = [
       { id: 'company', name: 'company', domain: 'company.anjing.cc' },
       { id: 'context', name: 'context', domain: 'context.anjing.cc' },
       { id: 'feedme', name: 'feedme', domain: 'feedme.anjing.cc' },
+      { id: 'frontend-prompt', name: 'frontend-prompt', domain: 'frontend-prompt.anjing.cc' },
       { id: 'github-journey', name: 'github-journey', domain: 'github-journey.anjing.cc' },
       { id: 'happy-finance', name: 'happy-finance', domain: 'happy-finance.anjing.cc' },
       { id: 'happy-github', name: 'happy-github', domain: 'happy-github.anjing.cc' },
